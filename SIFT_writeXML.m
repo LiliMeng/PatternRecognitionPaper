@@ -49,26 +49,28 @@ end
 
 %% Write XML file based on a Struct using "xml_write"
 % Any MATLAB data struct can be saved to XML file.
-MyTree=[];
-MyTree.image_name = tree.image_name;
-MyTree.K = tree.K;
-MyTree.R = tree.R;
-MyTree.T = tree.T;
-MyTree.radial = tree.radial;
-MyTree.pts2d.rows = N_pts2d;
-MyTree.pts2d.cols = 1;
-MyTree.pts2d.dt = '"2d"';
-MyTree.pts2d.data = NN_pts2d_char;
-MyTree.pts2d.ATTRIBUTE.type_id = 'opencv-matrix';
-MyTree.pts3d.rows = N_pts3d;
-MyTree.pts3d.cols = 1;
-MyTree.pts3d.dt = '3d';
-MyTree.pts3d.data = NN_pts3d_char;
-MyTree.pts3d.ATTRIBUTE.type_id = 'opencv-matrix';
-MyTree.sift.rows = N_sift;
-MyTree.sift.cols = 1;
-MyTree.sift.data = NN_sift_char;
-MyTree.sift.ATTRIBUTE.type_id = 'opencv-matrix';
+opencv_storage=[];
+opencv_storage.image_name = tree.image_name;
+opencv_storage.K = tree.K;
+opencv_storage.R = tree.R;
+opencv_storage.T = tree.T;
+opencv_storage.radial = tree.radial;
+opencv_storage.pts_2d.rows = N_pts2d;
+opencv_storage.pts_2d.cols = 1;
+opencv_storage.pts_2d.dt = '"2d"';
+opencv_storage.pts_2d.data = NN_pts2d_char;
+opencv_storage.pts_2d.ATTRIBUTE.type_id = 'opencv-matrix';
+opencv_storage.pts_3d.rows = N_pts3d;
+opencv_storage.pts_3d.cols = 1;
+opencv_storage.pts_3d.dt = '"3d"';
+opencv_storage.pts_3d.data = NN_pts3d_char;
+opencv_storage.pts_3d.ATTRIBUTE.type_id = 'opencv-matrix';
+opencv_storage.sift.rows = N_sift;
+opencv_storage.sift.cols = 128;
+opencv_storage.sift.dt = tree.K.dt;
+opencv_storage.sift.data = NN_sift_char;
+opencv_storage.sift.ATTRIBUTE.type_id = 'opencv-matrix';
 
 new_xml_filename = sprintf('/home/lci/PR2017/matlabCode/SIFTData/new_%08d.xml',frame_num)
-xml_write(new_xml_filename, MyTree);
+xml_write(new_xml_filename, opencv_storage);
+
